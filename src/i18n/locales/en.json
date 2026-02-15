@@ -1,0 +1,45 @@
+{
+  "app": {
+    "title": "Uncle Moo's Fortune",
+    "subtitle": "Don't give up when luck is down! Economic recovery starts with fortune telling!",
+    "aiTagline": "Accurate predictions with AI (Artificial Intuition)",
+    "warning": "Disclaimer: This is personal belief and supports grassroots economy",
+    "startButton": "Reveal My Fortune",
+    "footer": "Predicted by Uncle Moo AI • Power by Thai Soft Power"
+  },
+  "form": {
+    "title": "Your Information",
+    "subtitle": "Tell Uncle Moo, don't be shy - he's seen it all",
+    "nameLabel": "Name (or nickname)",
+    "namePlaceholder": "e.g., John the Believer",
+    "dayLabel": "What day were you born?",
+    "topicLabel": "What would you like Uncle to read?",
+    "submit": "Reveal My Fortune"
+  },
+  "days": {
+    "sunday": "Sunday (Fiery & Powerful)",
+    "monday": "Monday (Overflowing Charm)",
+    "tuesday": "Tuesday (Brave Warrior)",
+    "wednesday": "Wednesday (Master of Words)",
+    "thursday": "Thursday (Wisdom Supreme)",
+    "friday": "Friday (Pleasure Seeker)",
+    "saturday": "Saturday (Dragon Fire)"
+  },
+  "topics": {
+    "love": "Love",
+    "work": "Career",
+    "power": "Power",
+    "health": "Health"
+  },
+  "result": {
+    "cardTitle": "Thai Destiny Simulator 2569",
+    "prediction": "Prediction:",
+    "mission": "Mission (How to fix your luck):",
+    "luck": "Luck",
+    "saveImage": "Save to show friends",
+    "tryAgain": "Read for someone else"
+  },
+  "processing": {
+    "title": "Processing stars and GDP index..."
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "app": {
+    "title": "Onkel Moos Wahrsagung",
+    "subtitle": "Gib nicht auf wenn das Glueck fehlt! Wirtschaftserholung beginnt mit Weissagung!",
+    "aiTagline": "Genaue Vorhersagen mit KI (Kuenstliche Intuition)",
+    "warning": "Hinweis: Dies ist persoenlicher Glaube und unterstuetzt die lokale Wirtschaft",
+    "startButton": "Schicksal vorher sagen",
+    "footer": "Vorausgesagt von Onkel Moo KI • Power by Thai Soft Power"
+  },
+  "form": {
+    "title": "Deine Informationen",
+    "subtitle": "Erzaehl Onkel Moo, sei nicht schuechtern - er hat schon alles gesehen",
+    "nameLabel": "Name (oder Spitzname)",
+    "namePlaceholder": "z.B., Hans der Glaeubige",
+    "dayLabel": "An welchem Tag bist du geboren?",
+    "topicLabel": "Was soll Onkel fuer dich lesen?",
+    "submit": "Mein Schicksal zeigen"
+  },
+  "days": {
+    "sunday": "Sonntag (Feurig & Maechtig)",
+    "monday": "Montag (Ueberlaufender Charme)",
+    "tuesday": "Dienstag (Tapferer Krieger)",
+    "wednesday": "Mittwoch (Meister der Worte)",
+    "thursday": "Donnerstag (Hoechste Weisheit)",
+    "friday": "Freitag (Vergnuegungssuechtig)",
+    "saturday": "Samstag (Drachenfeuer)"
+  },
+  "topics": {
+    "love": "Liebe",
+    "work": "Karriere",
+    "power": "Macht",
+    "health": "Gesundheit"
+  },
+  "result": {
+    "cardTitle": "Thai Schicksal Simulator 2569",
+    "prediction": "Vorhersage:",
+    "mission": "Mission (Wie man das Glueck verbessert):",
+    "luck": "Glueck",
+    "saveImage": "Speichern um Freunden zu zeigen",
+    "tryAgain": "Fuer jemand anderen lesen"
+  },
+  "processing": {
+    "title": "Verarbeite Sterne und BIP-Index..."
+  }
+}
