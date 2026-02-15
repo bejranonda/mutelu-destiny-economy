@@ -1,6 +1,8 @@
-# Moo-Te-Loo 5.0 - Thai Soft Power Fortune Telling App
+# MUTELU: The Destiny Economy
 
 ลุงมูดูดวงกู้ชาติ - A humorous fortune-telling application that promotes Thai regional products and tourism through AI-powered predictions.
+
+**Live Demo:** https://mutelu-destiny-economy.pages.dev
 
 ## Features
 
@@ -33,8 +35,8 @@
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/moo-te-loo-fortune.git
-cd moo-te-loo-fortune
+git clone https://github.com/bejranonda/mutelu-destiny-economy.git
+cd mutelu-destiny-economy
 ```
 
 2. Install dependencies:
