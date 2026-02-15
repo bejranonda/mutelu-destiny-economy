@@ -3,12 +3,6 @@ compatibility_date = "2026-02-15"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist"
 
-# D1 Database binding
-[[d1_databases]]
-binding = "FORTUNE_DB"
-database_name = "fortune-analytics"
-database_id = "will-be-generated-after-creation"
-
 # Workers AI binding
 [ai]
 binding = "AI"
@@ -17,3 +11,9 @@ binding = "AI"
 [vars]
 APP_NAME = "MUTELU: The Destiny Economy"
 APP_VERSION = "1.0.0"
+
+# D1 Database binding (uncomment after creating database)
+# [[d1_databases]]
+# binding = "FORTUNE_DB"
+# database_name = "fortune-analytics"
+# database_id = "your-database-id-here"
