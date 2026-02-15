@@ -114,37 +114,46 @@ export default function App() {
       <div className="max-w-md mx-auto min-h-screen relative flex flex-col items-center justify-center p-4">
 
         {/* HEADER LOGO */}
-        <div className="absolute top-4 left-0 right-0 flex justify-center z-10">
-          <div className="bg-amber-500 text-slate-900 px-4 py-1 rounded-full text-xs font-bold tracking-widest shadow-[0_0_15px_rgba(245,158,11,0.5)]">
-            MOO-TE-LOO 5.0
+        <div className="absolute top-6 left-0 right-0 flex justify-center z-10">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-black tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]">
+              MUTELU
+            </span>
+            <span className="h-4 w-[1px] bg-amber-500/50"></span>
+            <span className="text-[10px] font-bold tracking-widest text-amber-500/80 uppercase mt-1">
+              The Destiny Economy
+            </span>
           </div>
         </div>
 
         {/* INTRO SCREEN */}
         {gameState === 'INTRO' && (
-          <div className="text-center space-y-8 animate-in fade-in zoom-in duration-500">
+          <div className="text-center space-y-8 animate-in fade-in zoom-in duration-500 pt-10">
             <div className="relative">
-              <div className="w-32 h-32 bg-amber-500 rounded-full mx-auto blur-3xl opacity-20 animate-pulse"></div>
-              <Ghost size={80} className="mx-auto text-amber-500 relative z-10 animate-bounce" />
+              <div className="w-40 h-40 bg-amber-500 rounded-full mx-auto blur-[60px] opacity-20 animate-pulse"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Ghost size={80} className="text-amber-500/90 relative z-10 animate-[bounce_3s_infinite]" />
+              </div>
             </div>
 
-            <div className="space-y-2">
-              <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-amber-300 to-amber-600 drop-shadow-sm">
+            <div className="space-y-4">
+              <h1 className="text-5xl md:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-amber-100 via-amber-300 to-amber-600 drop-shadow-sm pb-2">
                 {t('app.title')}
               </h1>
-              <p className="text-slate-400 text-sm max-w-xs mx-auto">
+              <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent mx-auto"></div>
+              <p className="text-slate-400 text-sm md:text-base font-light tracking-wide max-w-sm mx-auto leading-relaxed">
                 "{t('app.subtitle')} <br/>
-                {t('app.aiTagline')}"
+                <span className="text-amber-500/70 text-xs font-medium mt-2 block">{t('app.aiTagline')}</span>"
               </p>
             </div>
 
             <button
               onClick={handleStart}
-              className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-slate-900 transition-all duration-200 bg-amber-500 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 active:scale-95 shadow-[0_0_20px_rgba(245,158,11,0.6)]"
+              className="group relative inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-slate-900 transition-all duration-300 bg-amber-500 font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 active:scale-95 shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:shadow-[0_0_40px_rgba(245,158,11,0.6)]"
             >
-              <span className="absolute inset-0 transition-all duration-1000 group-hover:rotate-180 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 rounded-xl"></span>
-              <span className="relative flex items-center gap-2">
-                {t('app.startButton')} <ArrowRight size={20} />
+              <span className="absolute inset-0 transition-all duration-1000 group-hover:rotate-180 bg-gradient-to-r from-amber-300 via-amber-500 to-amber-400 rounded-full opacity-0 group-hover:opacity-100"></span>
+              <span className="relative flex items-center gap-3">
+                {t('app.startButton')} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </span>
             </button>
 
