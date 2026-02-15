@@ -2,7 +2,7 @@
   "name": "moo-te-loo-fortune",
   "version": "1.0.0",
   "type": "module",
-  "description": "Thai Soft Power Fortune Telling App - ลุงมูดูดวงกู้ชาติ",
+  "description": "MUTELU: The Destiny Economy - Unlock Your Fate. Boost The Nation.",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

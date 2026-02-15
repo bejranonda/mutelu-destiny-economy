@@ -1,6 +1,6 @@
 # MUTELU: The Destiny Economy
 
-ลุงมูดูดวงกู้ชาติ - A humorous fortune-telling application that promotes Thai regional products and tourism through AI-powered predictions.
+MUTELU: The Destiny Economy - Unlock Your Fate. Boost The Nation. A premium fortune-telling application that promotes Thai regional products and tourism through AI-powered predictions.
 
 **Live Demo:** https://mutelu-destiny-economy.pages.dev
 
