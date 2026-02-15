@@ -1,4 +1,4 @@
-name = "moo-te-loo-fortune"
+name = "mutelu-destiny-economy"
 compatibility_date = "2026-02-15"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "dist"
@@ -15,7 +15,7 @@ binding = "AI"
 
 # Environment variables (non-sensitive)
 [vars]
-APP_NAME = "Moo-Te-Loo 5.0"
+APP_NAME = "MUTELU: The Destiny Economy"
 APP_VERSION = "1.0.0"
 
 # Production environment
