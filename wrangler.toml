@@ -17,12 +17,3 @@ binding = "AI"
 [vars]
 APP_NAME = "MUTELU: The Destiny Economy"
 APP_VERSION = "1.0.0"
-
-# Production environment
-[env.production]
-workers_dev = false
-
-[[env.production.d1_databases]]
-binding = "FORTUNE_DB"
-database_name = "fortune-analytics-prod"
-database_id = "will-be-generated-after-creation"
