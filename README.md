@@ -10,7 +10,7 @@
 - 🌍 **Multi-Language Support** - Thai, English, German (more coming soon)
 - 🇹🇭 **Thai Soft Power** - Promotes regional products and tourism destinations
 - 📱 **Mobile-First Design** - Beautiful responsive UI with Tailwind CSS
-- 📊 **Analytics** - Track popular destinations and user engagement (D1 database)
+- 🚀 **Auto-Deploy** - Connected to GitHub for automatic deployments
 
 ## Tech Stack
 
@@ -19,9 +19,10 @@
 | **Frontend** | React 18 + Vite + TypeScript + Tailwind CSS |
 | **Backend** | Cloudflare Pages Functions |
 | **AI** | Cloudflare Workers AI (Llama 3.2) |
-| **Database** | Cloudflare D1 (SQLite) |
+| **Database** | Cloudflare D1 (SQLite) - optional |
 | **i18n** | react-i18next |
 | **Icons** | Lucide React |
+| **Hosting** | Cloudflare Pages (Free Tier) |
 
 ## Quick Start
 
@@ -29,7 +30,6 @@
 
 - Node.js 18+
 - Cloudflare account (free tier works)
-- Wrangler CLI
 
 ### Installation
 
@@ -46,60 +46,62 @@ npm install
 
 3. Set up environment variables:
 ```bash
-cp .env.example .dev.vars
-# Edit .dev.vars with your actual tokens
+cp .env.example .env
+# Edit .env with your tokens (optional for local development)
 ```
 
-4. Create D1 database:
-```bash
-npx wrangler d1 create fortune-analytics
-# Update wrangler.toml with the database_id
-```
-
-5. Run migrations:
-```bash
-npm run db:migrate:local
-```
-
-6. Start development server:
+4. Start development server:
 ```bash
 npm run dev
 ```
 
+5. Open http://localhost:3000
+
 ## Deployment
 
-### Cloudflare Pages (Recommended)
+### Auto-Deploy (Recommended)
 
-1. Push to GitHub
-2. Connect repository in Cloudflare Pages dashboard
-3. Set build command: `npm run build`
-4. Set output directory: `dist`
-5. Add environment variables in Cloudflare dashboard
+The project is connected to GitHub and auto-deploys to Cloudflare Pages:
+
+- **Trigger**: Every push to `master` branch
+- **Build Command**: `npm install && npm run build`
+- **Output Directory**: `dist`
+- **Live URL**: https://mutelu-destiny-economy.pages.dev
 
 ### Manual Deployment
 
 ```bash
 npm run build
-npm run deploy
+npx wrangler pages deploy dist
 ```
 
 ## Project Structure
 
 ```
-Softpower2569/
+mutelu-destiny-economy/
 ├── src/
-│   ├── components/     # React components
-│   ├── data/           # Static data (archetypes, quests, quotes)
-│   ├── i18n/           # Internationalization
-│   │   └── locales/    # Translation files (th, en, de)
-│   ├── lib/            # Utilities and API
-│   ├── App.tsx         # Main app component
-│   └── main.tsx        # React entry point
+│   ├── data/
+│   │   ├── archetypes.ts    # 7 day-based personality types
+│   │   ├── quests.ts        # Fortune quests by topic
+│   │   └── quotes.ts        # Loading screen quotes
+│   ├── i18n/
+│   │   ├── index.ts         # i18n configuration
+│   │   └── locales/
+│   │       ├── th.json      # Thai translations
+│   │       ├── en.json      # English translations
+│   │       └── de.json      # German translations
+│   ├── App.tsx              # Main React component
+│   ├── main.tsx             # Entry point
+│   └── index.css            # Tailwind CSS
 ├── functions/
 │   └── api/
-│       └── fortune.ts  # Cloudflare Workers AI API
-├── research/           # Thai fortune-telling knowledge
-├── wrangler.toml       # Cloudflare configuration
+│       └── fortune.ts       # Workers AI API endpoint
+├── research/
+│   ├── thai-fortune-telling.md
+│   ├── soft-power-products.md
+│   └── regional-tourism.md
+├── wrangler.toml            # Cloudflare configuration
+├── .env.example             # Environment template
 └── package.json
 ```
 
@@ -110,13 +112,19 @@ Softpower2569/
 | `npm run dev` | Start development server |
 | `npm run build` | Build for production |
 | `npm run preview` | Preview production build |
-| `npm run deploy` | Deploy to Cloudflare Pages |
-| `npm run db:migrate:local` | Run D1 migrations locally |
+
+## Languages Supported
+
+| Language | Code | Status |
+|----------|------|--------|
+| ไทย (Thai) | `th` | ✅ Complete |
+| English | `en` | ✅ Complete |
+| Deutsch | `de` | ✅ Complete |
 
 ## Security
 
-- ⚠️ **Never commit `.env`, `.dev.vars`, or any files containing tokens**
-- All secrets should be set via Cloudflare dashboard or wrangler secrets
+- ⚠️ **Never commit `.env` or any files containing tokens**
+- The `.gitignore` is configured to exclude all sensitive files
 - API tokens should have minimum required permissions
 
 ## Contributing
