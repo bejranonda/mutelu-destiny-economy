@@ -13,6 +13,7 @@ export default {
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
         'zoom-in': 'zoomIn 0.5s ease-out',
+        'shimmer': 'shimmer 2s infinite',
       },
       keyframes: {
         fadeIn: {
@@ -22,6 +23,10 @@ export default {
         zoomIn: {
           '0%': { opacity: '0', transform: 'scale(0.95)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        shimmer: {
+          '0%': { left: '-100%' },
+          '100%': { left: '100%' },
         },
       },
     },

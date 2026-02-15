@@ -91,8 +91,11 @@ export default function App() {
   const days: Day[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-amber-500 selection:text-slate-900 overflow-x-hidden">
-      <div className="fixed inset-0 pointer-events-none opacity-20 bg-[url('https://www.transparenttextures.com/patterns/thatch.png')]"></div>
+    <div className="min-h-screen bg-[#0f172a] text-slate-100 font-sans selection:bg-amber-500 selection:text-slate-900 overflow-x-hidden">
+      {/* Background Decor */}
+      <div className="fixed inset-0 pointer-events-none opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+      <div className="fixed top-[-20%] right-[-10%] w-[500px] h-[500px] bg-amber-600/20 rounded-full blur-[100px]"></div>
+      <div className="fixed bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[100px]"></div>
 
       {/* Language Switcher */}
       <div className="fixed top-4 right-4 z-20 flex gap-2">
@@ -100,11 +103,10 @@ export default function App() {
           <button
             key={lang}
             onClick={() => changeLanguage(lang)}
-            className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
-              i18n.language === lang
+            className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${i18n.language === lang
                 ? 'bg-amber-500 text-slate-900'
                 : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-            }`}
+              }`}
           >
             {lang.toUpperCase()}
           </button>
@@ -128,11 +130,13 @@ export default function App() {
 
         {/* INTRO SCREEN */}
         {gameState === 'INTRO' && (
-          <div className="text-center space-y-8 animate-in fade-in zoom-in duration-500 pt-10">
-            <div className="relative">
-              <div className="w-40 h-40 bg-amber-500 rounded-full mx-auto blur-[60px] opacity-20 animate-pulse"></div>
+          <div className="text-center space-y-8 animate-in fade-in zoom-in duration-500 pt-10 relative z-20 w-full">
+            <div className="relative mb-8">
+              <div className="w-40 h-40 bg-gradient-to-tr from-amber-500 to-indigo-600 rounded-full mx-auto blur-[60px] opacity-20 animate-pulse"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <Ghost size={80} className="text-amber-500/90 relative z-10 animate-[bounce_3s_infinite]" />
+                <div className="relative z-10 w-24 h-24 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl rotate-3 shadow-[0_0_40px_rgba(245,158,11,0.4)] flex items-center justify-center">
+                  <Ghost size={48} className="text-white" />
+                </div>
               </div>
             </div>
 
@@ -142,20 +146,23 @@ export default function App() {
               </h1>
               <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent mx-auto"></div>
               <p className="text-slate-400 text-sm md:text-base font-light tracking-wide max-w-sm mx-auto leading-relaxed">
-                "{t('app.subtitle')} <br/>
+                "{t('app.subtitle')} <br />
                 <span className="text-amber-500/70 text-xs font-medium mt-2 block">{t('app.aiTagline')}</span>"
               </p>
             </div>
 
-            <button
-              onClick={handleStart}
-              className="group relative inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-slate-900 transition-all duration-300 bg-amber-500 font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 active:scale-95 shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:shadow-[0_0_40px_rgba(245,158,11,0.6)]"
-            >
-              <span className="absolute inset-0 transition-all duration-1000 group-hover:rotate-180 bg-gradient-to-r from-amber-300 via-amber-500 to-amber-400 rounded-full opacity-0 group-hover:opacity-100"></span>
-              <span className="relative flex items-center gap-3">
-                {t('app.startButton')} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </span>
-            </button>
+            <div className="px-6 w-full">
+              <button
+                onClick={handleStart}
+                className="group relative w-full overflow-hidden rounded-full bg-white p-[1px] shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all hover:shadow-[0_0_40px_rgba(245,158,11,0.3)] active:scale-95"
+              >
+                <span className="absolute inset-[-1000%] animate-shimmer bg-[conic-gradient(from_90deg_at_50%_50%,#E2E8F0_0%,#F59E0B_50%,#E2E8F0_100%)]" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-4 text-lg font-bold text-white backdrop-blur-3xl gap-3">
+                  {t('app.startButton')} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                </span>
+              </button>
+            </div>
+
 
             <p className="text-xs text-slate-600 mt-8">
               *{t('app.warning')}
@@ -178,7 +185,7 @@ export default function App() {
                   required
                   type="text"
                   value={userData.name}
-                  onChange={(e) => setUserData({...userData, name: e.target.value})}
+                  onChange={(e) => setUserData({ ...userData, name: e.target.value })}
                   className="w-full bg-slate-900 border border-slate-600 rounded-lg p-3 text-slate-100 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all"
                   placeholder={t('form.namePlaceholder')}
                 />
@@ -188,7 +195,7 @@ export default function App() {
                 <label className="block text-sm font-medium text-slate-300 mb-1">{t('form.dayLabel')}</label>
                 <select
                   value={userData.day}
-                  onChange={(e) => setUserData({...userData, day: e.target.value as Day})}
+                  onChange={(e) => setUserData({ ...userData, day: e.target.value as Day })}
                   className="w-full bg-slate-900 border border-slate-600 rounded-lg p-3 text-slate-100 focus:ring-2 focus:ring-amber-500 outline-none appearance-none"
                 >
                   {days.map(day => (
@@ -204,12 +211,11 @@ export default function App() {
                     <button
                       key={item.id}
                       type="button"
-                      onClick={() => setUserData({...userData, topic: item.id})}
-                      className={`flex flex-col items-center justify-center p-3 rounded-lg border transition-all ${
-                        userData.topic === item.id
-                        ? 'bg-amber-500/20 border-amber-500 text-amber-400'
-                        : 'bg-slate-900 border-slate-700 text-slate-500 hover:border-slate-500'
-                      }`}
+                      onClick={() => setUserData({ ...userData, topic: item.id })}
+                      className={`flex flex-col items-center justify-center p-3 rounded-lg border transition-all ${userData.topic === item.id
+                          ? 'bg-amber-500/20 border-amber-500 text-amber-400'
+                          : 'bg-slate-900 border-slate-700 text-slate-500 hover:border-slate-500'
+                        }`}
                     >
                       <item.icon size={24} className="mb-1" />
                       <span className="text-sm">{t(item.labelKey)}</span>
@@ -230,20 +236,17 @@ export default function App() {
 
         {/* PROCESSING SCREEN */}
         {gameState === 'PROCESSING' && (
-          <div className="text-center space-y-6 animate-pulse">
-            <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
-               <div className="absolute inset-0 border-4 border-amber-500/30 rounded-full animate-ping"></div>
-               <div className="absolute inset-4 border-4 border-amber-500/50 rounded-full animate-[spin_3s_linear_infinite]"></div>
-               <div className="absolute inset-8 border-4 border-amber-500/70 rounded-full animate-[spin_2s_linear_infinite_reverse]"></div>
-               <span className="text-4xl">🔮</span>
+          <div className="text-center space-y-8 animate-pulse w-full max-w-xs relative z-20">
+            <div className="relative w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+              <div className="absolute left-0 top-0 bottom-0 bg-amber-500 w-1/2 animate-shimmer"></div>
             </div>
 
-            <div className="bg-slate-800/80 px-6 py-4 rounded-2xl border border-amber-500/30">
-              <p className="text-xl font-medium text-amber-400 font-serif italic">
-                "{loadingText}"
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold text-white tracking-widest uppercase">Analyzing</h3>
+              <p className="text-amber-400 font-mono text-xs">
+                {'>'} {loadingText}
               </p>
             </div>
-            <p className="text-xs text-slate-500">{t('processing.title')}</p>
           </div>
         )}
 
@@ -282,7 +285,7 @@ export default function App() {
 
                   <div className="bg-amber-50 p-4 rounded-xl border border-amber-200 relative overflow-hidden">
                     <p className="text-xs font-bold text-amber-600 uppercase mb-1 flex items-center gap-1">
-                      <Sparkles size={14}/> {t('result.mission')}
+                      <Sparkles size={14} /> {t('result.mission')}
                     </p>
                     <p className="text-lg font-bold text-amber-900 leading-tight mb-2">
                       {finalResult.quest.action}
@@ -294,19 +297,19 @@ export default function App() {
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-2 justify-center">
-                   <span className="inline-flex items-center gap-1 bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded-md border border-green-200">
-                     <MapPin size={10} /> {finalResult.quest.location}
-                   </span>
-                   <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-1 rounded-md border border-blue-200">
-                     <ShoppingBag size={10} /> {finalResult.quest.product}
-                   </span>
+                  <span className="inline-flex items-center gap-1 bg-green-100 text-green-800 text-[10px] font-bold px-2 py-1 rounded-md border border-green-200">
+                    <MapPin size={10} /> {finalResult.quest.location}
+                  </span>
+                  <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-1 rounded-md border border-blue-200">
+                    <ShoppingBag size={10} /> {finalResult.quest.product}
+                  </span>
                 </div>
               </div>
 
               <div className="bg-slate-900 p-3 text-center">
-                 <p className="text-[10px] text-slate-400">
-                   {t('app.footer')}
-                 </p>
+                <p className="text-[10px] text-slate-400">
+                  {t('app.footer')}
+                </p>
               </div>
             </div>
 
