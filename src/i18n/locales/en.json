@@ -1,11 +1,11 @@
 {
   "app": {
-    "title": "MUTELU: The Destiny Economy",
+    "title": "MUTELU",
     "subtitle": "Unlock Your Fate. Boost The Nation.",
-    "aiTagline": "Accurate predictions with AI (Artificial Intuition)",
+    "aiTagline": "Accurate predictions with AI (Artificial Intuition) and Soft Power",
     "warning": "Disclaimer: This is personal belief and supports grassroots economy",
     "startButton": "Reveal My Fortune",
-    "footer": "Predicted by Uncle Moo AI • Power by Thai Soft Power"
+    "footer": "Predicted by Uncle Moo AI • Powered by Thai Soft Power"
   },
   "form": {
     "title": "Your Information",

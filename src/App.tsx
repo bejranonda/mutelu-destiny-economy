@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Sparkles, MapPin, ShoppingBag, ArrowRight, RefreshCw, Share2, Ghost, Heart, Briefcase, Zap, Activity } from 'lucide-react';
+import { Sparkles, MapPin, ShoppingBag, ArrowRight, RefreshCw, Share2, Ghost, Heart, Briefcase, Zap, Activity, Globe, ChevronDown, Check } from 'lucide-react';
 import { ARCHETYPES } from './data/archetypes';
 import { QUESTS } from './data/quests';
 import { UNCLE_QUOTES, UNCLE_QUOTES_EN, UNCLE_QUOTES_DE } from './data/quotes';
@@ -28,6 +28,13 @@ export default function App() {
   const [userData, setUserData] = useState<UserData>({ name: '', day: 'sunday', topic: 'love' });
   const [finalResult, setFinalResult] = useState<FinalResult | null>(null);
   const [loadingText, setLoadingText] = useState("");
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+
+  const languages = [
+    { code: 'th', name: 'ไทย', flag: '🇹🇭' },
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  ];
 
   const getQuotes = () => {
     const lang = i18n.language;
@@ -98,19 +105,50 @@ export default function App() {
       <div className="fixed bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[100px]"></div>
 
       {/* Language Switcher */}
-      <div className="fixed top-4 right-4 z-20 flex gap-2">
-        {['th', 'en', 'de'].map(lang => (
+      <div className="fixed top-4 right-4 z-20">
+        <div className="relative">
           <button
-            key={lang}
-            onClick={() => changeLanguage(lang)}
-            className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${i18n.language === lang
-                ? 'bg-amber-500 text-slate-900'
-                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-              }`}
+            onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 text-slate-300 hover:border-amber-500/50 hover:text-amber-400 transition-all shadow-lg"
           >
-            {lang.toUpperCase()}
+            <Globe size={16} className="text-amber-500" />
+            <span className="text-sm font-medium">
+              {languages.find(l => l.code === i18n.language)?.flag} {languages.find(l => l.code === i18n.language)?.name}
+            </span>
+            <ChevronDown size={14} className={`transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
-        ))}
+
+          {langDropdownOpen && (
+            <>
+              <div
+                className="fixed inset-0 z-10"
+                onClick={() => setLangDropdownOpen(false)}
+              />
+              <div className="absolute right-0 mt-2 w-40 rounded-xl bg-slate-800/95 backdrop-blur-sm border border-slate-700/50 shadow-xl overflow-hidden z-20">
+                {languages.map(lang => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      changeLanguage(lang.code);
+                      setLangDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-all ${
+                      i18n.language === lang.code
+                        ? 'bg-amber-500/20 text-amber-400'
+                        : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
+                    }`}
+                  >
+                    <span className="text-lg">{lang.flag}</span>
+                    <span className="flex-1 text-sm font-medium">{lang.name}</span>
+                    {i18n.language === lang.code && (
+                      <Check size={14} className="text-amber-400" />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       <div className="max-w-md mx-auto min-h-screen relative flex flex-col items-center justify-center p-4">
@@ -146,8 +184,8 @@ export default function App() {
               </h1>
               <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent mx-auto"></div>
               <p className="text-slate-400 text-sm md:text-base font-light tracking-wide max-w-sm mx-auto leading-relaxed">
-                "{t('app.subtitle')} <br />
-                <span className="text-amber-500/70 text-xs font-medium mt-2 block">{t('app.aiTagline')}</span>"
+                {t('app.subtitle')} <br />
+                <span className="text-amber-500/70 text-xs font-medium mt-2 block">{t('app.aiTagline')}</span>
               </p>
             </div>
 

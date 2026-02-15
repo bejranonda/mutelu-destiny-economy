@@ -1,28 +1,28 @@
 {
   "app": {
-    "title": "MUTELU: The Destiny Economy",
-    "subtitle": "Unlock Your Fate. Boost The Nation.",
-    "aiTagline": "Genaue Vorhersagen mit KI (Kuenstliche Intuition)",
-    "warning": "Hinweis: Dies ist persoenlicher Glaube und unterstuetzt die lokale Wirtschaft",
-    "startButton": "Schicksal vorher sagen",
-    "footer": "Vorausgesagt von Onkel Moo KI • Power by Thai Soft Power"
+    "title": "MUTELU",
+    "subtitle": "Enfessle dein Schicksal. Stärke die Nation.",
+    "aiTagline": "Genaue Vorhersagen mit KI (Künstliche Intuition) und Soft Power",
+    "warning": "Hinweis: Dies ist persönlicher Glaube und unterstützt die lokale Wirtschaft",
+    "startButton": "Mein Schicksal enthüllen",
+    "footer": "Vorausgesagt von Onkel Moo KI • Powered by Thai Soft Power"
   },
   "form": {
     "title": "Deine Informationen",
-    "subtitle": "Erzaehl Onkel Moo, sei nicht schuechtern - er hat schon alles gesehen",
+    "subtitle": "Erzähl Onkel Moo, sei nicht schüchtern - er hat schon alles gesehen",
     "nameLabel": "Name (oder Spitzname)",
-    "namePlaceholder": "z.B., Hans der Glaeubige",
+    "namePlaceholder": "z.B., Hans der Gläubige",
     "dayLabel": "An welchem Tag bist du geboren?",
-    "topicLabel": "Was soll Onkel fuer dich lesen?",
+    "topicLabel": "Was soll Onkel für dich lesen?",
     "submit": "Mein Schicksal zeigen"
   },
   "days": {
-    "sunday": "Sonntag (Feurig & Maechtig)",
-    "monday": "Montag (Ueberlaufender Charme)",
+    "sunday": "Sonntag (Feurig & Mächtig)",
+    "monday": "Montag (Überlaufender Charme)",
     "tuesday": "Dienstag (Tapferer Krieger)",
     "wednesday": "Mittwoch (Meister der Worte)",
-    "thursday": "Donnerstag (Hoechste Weisheit)",
-    "friday": "Freitag (Vergnuegungssuechtig)",
+    "thursday": "Donnerstag (Höchste Weisheit)",
+    "friday": "Freitag (Vergnügungssüchtig)",
     "saturday": "Samstag (Drachenfeuer)"
   },
   "topics": {
@@ -34,10 +34,10 @@
   "result": {
     "cardTitle": "Thai Schicksal Simulator 2569",
     "prediction": "Vorhersage:",
-    "mission": "Mission (Wie man das Glueck verbessert):",
-    "luck": "Glueck",
+    "mission": "Mission (Wie man das Glück verbessert):",
+    "luck": "Glück",
     "saveImage": "Speichern um Freunden zu zeigen",
-    "tryAgain": "Fuer jemand anderen lesen"
+    "tryAgain": "Für jemand anderen lesen"
   },
   "processing": {
     "title": "Verarbeite Sterne und BIP-Index..."

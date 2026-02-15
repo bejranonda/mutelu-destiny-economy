@@ -7,9 +7,10 @@ MUTELU: The Destiny Economy - Unlock Your Fate. Boost The Nation. A premium fort
 ## Features
 
 - 🎭 **AI-Powered Fortunes** - Uses Cloudflare Workers AI (Llama 3.2) for personalized predictions
-- 🌍 **Multi-Language Support** - Thai, English, German (more coming soon)
+- 🌍 **Multi-Language Support** - Thai, English, German with elegant dropdown selector
 - 🇹🇭 **Thai Soft Power** - Promotes regional products and tourism destinations
 - 📱 **Mobile-First Design** - Beautiful responsive UI with Tailwind CSS
+- 🎨 **Premium UI** - Amber/gold theme with gradient effects and smooth animations
 - 🚀 **Auto-Deploy** - Connected to GitHub for automatic deployments
 
 ## Tech Stack
@@ -147,4 +148,4 @@ MIT License - See LICENSE file for details
 
 ---
 
-*"Power by Thai Soft Power"* 🇹🇭
+*"Powered by Thai Soft Power"* 🇹🇭
