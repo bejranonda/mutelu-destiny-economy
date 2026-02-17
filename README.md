@@ -7,10 +7,12 @@ MUTELU: The Destiny Economy - Unlock Your Fate. Boost The Nation. A premium fort
 ## Features
 
 - 🎭 **AI-Powered Fortunes** - Uses Cloudflare Workers AI (Llama 3.2) for personalized predictions
+- 🕸️ **Thai Astrology (Takhsa)** - Dynamic 8-Directions destiny calculation with Radar Chart visualization
+- 📈 **Life Graph & Numerology** - Authentic Thai astrology calculation methods (Phase 2 ready)
 - 🌍 **Multi-Language Support** - Thai, English, German with elegant dropdown selector
 - 🇹🇭 **Thai Soft Power** - Promotes regional products and tourism destinations
 - 📱 **Mobile-First Design** - Beautiful responsive UI with Tailwind CSS
-- 🎨 **Premium UI** - Amber/gold theme with gradient effects and smooth animations
+- 🎨 **Premium UI** - Amber/gold theme with dynamic color backgrounds based on birth day
 - 🚀 **Auto-Deploy** - Connected to GitHub for automatic deployments
 
 ## Tech Stack
@@ -81,16 +83,18 @@ npx wrangler pages deploy dist
 ```
 mutelu-destiny-economy/
 ├── src/
+│   ├── components/      # Reusable UI components (RadarChart)
 │   ├── data/
-│   │   ├── archetypes.ts    # 7 day-based personality types
+│   │   ├── archetypes.ts    # 7 day-based personality types (Enhanced with Planets/Deities)
+│   │   ├── takhsa.ts        # Takhsa 8-Directions calculation logic
 │   │   ├── quests.ts        # Fortune quests by topic
 │   │   └── quotes.ts        # Loading screen quotes
 │   ├── i18n/
 │   │   ├── index.ts         # i18n configuration
 │   │   └── locales/
-│   │       ├── th.json      # Thai translations
-│   │       ├── en.json      # English translations
-│   │       └── de.json      # German translations
+│   │       ├── th.json      # Thai translations (with Astrology keys)
+│   │       ├── en.json      # English translations (with Astrology keys)
+│   │       └── de.json      # German translations (with Astrology keys)
 │   ├── App.tsx              # Main React component
 │   ├── main.tsx             # Entry point
 │   └── index.css            # Tailwind CSS
@@ -98,9 +102,12 @@ mutelu-destiny-economy/
 │   └── api/
 │       └── fortune.ts       # Workers AI API endpoint
 ├── research/
-│   ├── thai-fortune-telling.md
-│   ├── soft-power-products.md
-│   └── regional-tourism.md
+│   ├── thai-fortune-telling.md       # Traditional methods overview
+│   ├── thai-astrology-systems.md     # Core systems & calculations
+│   ├── fortune-telling-ux-patterns.md # UX & Gamification analysis
+│   ├── astrology-integration-plan.md # 3-Phase integration strategy
+│   ├── soft-power-products.md        # Product mapping
+│   └── regional-tourism.md           # Destination mapping
 ├── wrangler.toml            # Cloudflare configuration
 ├── .env.example             # Environment template
 └── package.json

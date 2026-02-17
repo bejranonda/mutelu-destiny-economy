@@ -37,7 +37,11 @@
     "mission": "Mission (How to fix your luck):",
     "luck": "Luck",
     "saveImage": "Save to show friends",
-    "tryAgain": "Read for someone else"
+    "tryAgain": "Read for someone else",
+    "planetLabel": "Guardian Planet",
+    "deityLabel": "Guardian Deity",
+    "takhsaTitle": "8 Directions Destiny (Takhsa)",
+    "luckyDirPrefix": "*Lucky Direction: "
   },
   "processing": {
     "title": "Processing stars and GDP index..."

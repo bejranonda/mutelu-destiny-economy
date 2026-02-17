@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Sparkles, MapPin, ShoppingBag, ArrowRight, RefreshCw, Share2, Ghost, Heart, Briefcase, Zap, Activity, Globe, ChevronDown, Check } from 'lucide-react';
-import { ARCHETYPES } from './data/archetypes';
+import { ARCHETYPES, DayData, Day } from './data/archetypes';
 import { QUESTS } from './data/quests';
 import { UNCLE_QUOTES, UNCLE_QUOTES_EN, UNCLE_QUOTES_DE } from './data/quotes';
+import { calculateTakhsa, TakhsaPosition } from './data/takhsa';
+import { RadarChart } from './components/RadarChart';
 
 type GameState = 'INTRO' | 'FORM' | 'PROCESSING' | 'RESULT';
 type Topic = 'love' | 'work' | 'power' | 'health';
-type Day = 'sunday' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday';
 
 interface UserData {
   name: string;
@@ -16,10 +17,11 @@ interface UserData {
 }
 
 interface FinalResult {
-  archetype: typeof ARCHETYPES.sunday;
+  archetype: DayData;
   quest: typeof QUESTS.love[0];
   luckScore: number;
   user: UserData;
+  takhsa: TakhsaPosition[];
 }
 
 export default function App() {
@@ -74,8 +76,9 @@ export default function App() {
     const topicQuests = QUESTS[userData.topic] || QUESTS['love'];
     const quest = topicQuests[Math.floor(Math.random() * topicQuests.length)];
     const luckScore = Math.floor(Math.random() * 40) + 60;
+    const takhsa = calculateTakhsa(userData.day as Day);
 
-    setFinalResult({ archetype, quest, luckScore, user: userData });
+    setFinalResult({ archetype, quest, luckScore, user: userData, takhsa });
   };
 
   const resetGame = () => {
@@ -97,8 +100,18 @@ export default function App() {
 
   const days: Day[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
+  // Dynamic background style based on result or default
+  const getBackgroundStyle = () => {
+    if (finalResult) {
+      return {
+        background: `radial-gradient(circle at 50% 0%, ${finalResult.archetype.hColor}15, #0f172a 70%)`
+      };
+    }
+    return { background: '#0f172a' };
+  };
+
   return (
-    <div className="min-h-screen bg-[#0f172a] text-slate-100 font-sans selection:bg-amber-500 selection:text-slate-900 overflow-x-hidden">
+    <div className="min-h-screen text-slate-100 font-sans selection:bg-amber-500 selection:text-slate-900 overflow-x-hidden transition-colors duration-1000" style={getBackgroundStyle()}>
       {/* Background Decor */}
       <div className="fixed inset-0 pointer-events-none opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
       <div className="fixed top-[-20%] right-[-10%] w-[500px] h-[500px] bg-amber-600/20 rounded-full blur-[100px]"></div>
@@ -132,11 +145,10 @@ export default function App() {
                       changeLanguage(lang.code);
                       setLangDropdownOpen(false);
                     }}
-                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-all ${
-                      i18n.language === lang.code
-                        ? 'bg-amber-500/20 text-amber-400'
-                        : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
-                    }`}
+                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-all ${i18n.language === lang.code
+                      ? 'bg-amber-500/20 text-amber-400'
+                      : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
+                      }`}
                   >
                     <span className="text-lg">{lang.flag}</span>
                     <span className="flex-1 text-sm font-medium">{lang.name}</span>
@@ -251,8 +263,8 @@ export default function App() {
                       type="button"
                       onClick={() => setUserData({ ...userData, topic: item.id })}
                       className={`flex flex-col items-center justify-center p-3 rounded-lg border transition-all ${userData.topic === item.id
-                          ? 'bg-amber-500/20 border-amber-500 text-amber-400'
-                          : 'bg-slate-900 border-slate-700 text-slate-500 hover:border-slate-500'
+                        ? 'bg-amber-500/20 border-amber-500 text-amber-400'
+                        : 'bg-slate-900 border-slate-700 text-slate-500 hover:border-slate-500'
                         }`}
                     >
                       <item.icon size={24} className="mb-1" />
@@ -294,9 +306,12 @@ export default function App() {
 
             <div className="bg-[#fcf8f0] text-slate-900 rounded-3xl overflow-hidden shadow-2xl relative border-4 border-amber-600 max-w-sm mx-auto">
 
-              <div className="bg-amber-700 p-4 text-center relative overflow-hidden">
-                <h3 className="text-amber-100 font-bold text-sm tracking-widest uppercase">{t('result.cardTitle')}</h3>
+              <div className="p-4 text-center relative overflow-hidden transition-colors duration-700" style={{ backgroundColor: finalResult.archetype.hColor }}>
+                <h3 className="text-white/80 font-bold text-sm tracking-widest uppercase">{t('result.cardTitle')}</h3>
                 <h2 className="text-3xl font-extrabold text-white mt-1 drop-shadow-md">{finalResult.archetype.title}</h2>
+                <div className="absolute top-0 right-0 p-2 opacity-50">
+                  <span className="text-4xl">{finalResult.archetype.planet.icon}</span>
+                </div>
               </div>
 
               <div className="p-6 text-center bg-gradient-to-b from-amber-100 to-[#fcf8f0]">
@@ -305,12 +320,48 @@ export default function App() {
                   "{finalResult.archetype.desc}"
                 </p>
                 <div className="flex justify-center gap-4 mt-4 text-xs font-bold text-slate-600">
-                  <div className="bg-amber-200 px-3 py-1 rounded-full">{t('result.luck')}: {finalResult.luckScore}/100</div>
-                  <div className="bg-amber-200 px-3 py-1 rounded-full">{finalResult.quest.stat}</div>
+                  <div className="px-3 py-1 rounded-full bg-white/50 border border-slate-200">
+                    {t('result.luck')}: {finalResult.luckScore}/100
+                  </div>
+                  <div className="px-3 py-1 rounded-full bg-white/50 border border-slate-200">
+                    {finalResult.quest.stat}
+                  </div>
+                </div>
+
+                {/* Planet & Deity Info */}
+                <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-left">
+                  <div className="bg-white/60 p-2 rounded-lg border border-slate-100">
+                    <span className="block font-bold text-slate-500">{t('result.planetLabel')}</span>
+                    <span className="text-slate-800">{finalResult.archetype.planet.name}</span>
+                  </div>
+                  <div className="bg-white/60 p-2 rounded-lg border border-slate-100">
+                    <span className="block font-bold text-slate-500">{t('result.deityLabel')}</span>
+                    <span className="text-slate-800">{finalResult.archetype.deity.name}</span>
+                  </div>
                 </div>
               </div>
 
               <div className="p-6 pt-0 relative z-10">
+                {/* Takhsa Radar Chart */}
+                <div className="mb-6 mt-6">
+                  <h4 className="text-center text-sm font-bold text-slate-500 mb-2 uppercase tracking-wider">{t('result.takhsaTitle')}</h4>
+                  <div className="flex justify-center -my-4">
+                    <RadarChart
+                      data={finalResult.takhsa.map(t => ({
+                        label: t.aspect,
+                        // Simulate values based on aspects for now (e.g. Sri/Det are high, Kalakini is low)
+                        value: t.aspect === 'กาลกิณี' ? 3 : t.aspect === 'ศรี' || t.aspect === 'เดช' ? 9 : 6,
+                      }))}
+                      size={240}
+                      fillColor={`${finalResult.archetype.hColor}40`}
+                      strokeColor={finalResult.archetype.hColor}
+                    />
+                  </div>
+                  <div className="text-center text-[10px] text-slate-400 mt-2">
+                    {t('result.luckyDirPrefix')}{finalResult.archetype.luckyDirection}
+                  </div>
+                </div>
+
                 <div className="border-t-2 border-dashed border-amber-300 my-2"></div>
 
                 <div className="space-y-4">

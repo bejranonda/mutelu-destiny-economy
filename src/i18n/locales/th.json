@@ -37,7 +37,11 @@
     "mission": "วิธีแก้เคล็ด (Mission):",
     "luck": "ดวง",
     "saveImage": "บันทึกรูปไปอวดเพื่อน",
-    "tryAgain": "ดูให้คนอื่นต่อ"
+    "tryAgain": "ดูให้คนอื่นต่อ",
+    "planetLabel": "ดาวประจำตัว",
+    "deityLabel": "เทวดาคุ้มครอง",
+    "takhsaTitle": "ดวงชะตา 8 ทิศ (ทักษา)",
+    "luckyDirPrefix": "*ทิศมงคล: "
   },
   "processing": {
     "title": "ระบบกำลังประมวลผลดวงดาวและดัชนี GDP..."

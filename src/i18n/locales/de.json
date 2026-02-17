@@ -37,7 +37,11 @@
     "mission": "Mission (Wie man das Glück verbessert):",
     "luck": "Glück",
     "saveImage": "Speichern um Freunden zu zeigen",
-    "tryAgain": "Für jemand anderen lesen"
+    "tryAgain": "Für jemand anderen lesen",
+    "planetLabel": "Hüter-Planet",
+    "deityLabel": "Schutzgott",
+    "takhsaTitle": "8 Richtungen Schicksal (Takhsa)",
+    "luckyDirPrefix": "*Glücksrichtung: "
   },
   "processing": {
     "title": "Verarbeite Sterne und BIP-Index..."
