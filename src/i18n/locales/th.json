@@ -44,7 +44,15 @@
     "luckyDirPrefix": "*ทิศมงคล: ",
     "zodiacLabel": "ราศี",
     "animalLabel": "ปีนักษัตร",
-    "lifeGraphTitle": "กราฟชีวิต (Life Graph)"
+    "lifeGraphTitle": "กราฟชีวิต (Life Graph)",
+    "dailyFortuneTitle": "ดวงรายวันของคุณ",
+    "softPowerTitle": "ไอเทมเสริมดวง (Soft Power Boost)",
+    "dailyPredictions": {
+      "friend": "วันนี้เป็นวันคู่มิตร! การเจรจาจะราบรื่น ผู้ใหญ่เมตตา",
+      "enemy": "วันนี้วันคู่ศัตรู ระวังคำพูดและอารมณ์เป็นพิเศษ",
+      "own": "วันนี้เป็นวันของคุณ! พลังงานเต็มเปี่ยม ลุยได้เลย",
+      "neutral": "วันนี้วันอุบะก่อง กลางๆ ไม่ดีไม่ร้าย ทำใจให้สบาย"
+    }
   },
   "zodiac": {
     "aries": "เมษ",

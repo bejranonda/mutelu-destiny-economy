@@ -44,7 +44,15 @@
     "luckyDirPrefix": "*Lucky Direction: ",
     "zodiacLabel": "Zodiac",
     "animalLabel": "Year of",
-    "lifeGraphTitle": "Life Graph"
+    "lifeGraphTitle": "Life Graph",
+    "dailyFortuneTitle": "Your Daily Fortune",
+    "softPowerTitle": "Soft Power Boost",
+    "dailyPredictions": {
+      "friend": "Friendly Day! Negotiations are smooth, elders act with kindness.",
+      "enemy": "Conflict Day. Be careful with your words and emotions.",
+      "own": "It's Your Day! Full energy, go for it.",
+      "neutral": "Neutral Day. Keep calm and carry on."
+    }
   },
   "zodiac": {
     "aries": "Aries",

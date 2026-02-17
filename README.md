@@ -9,6 +9,8 @@ MUTELU: The Destiny Economy - Unlock Your Fate. Boost The Nation. A premium fort
 - 🎭 **AI-Powered Fortunes** - Uses Cloudflare Workers AI (Llama 3.2) for personalized predictions
 - 🕸️ **Thai Astrology (Takhsa)** - Dynamic 8-Directions destiny calculation with Radar Chart visualization
 - 📈 **Life Graph & Numerology** - Authentic Thai astrology calculation methods with visual charts
+- ⚡ **Daily Destiny** - Real-time daily luck calculation based on birth day relationship
+- 🛍️ **Soft Power Engine** - Intelligent OTOP product recommendations mapped to your element
 - 🌍 **Multi-Language Support** - Thai, English, German with elegant dropdown selector
 - 🇹🇭 **Thai Soft Power** - Promotes regional products and tourism destinations
 - 📱 **Mobile-First Design** - Beautiful responsive UI with Tailwind CSS

@@ -9,6 +9,8 @@ import { calculateZodiac, calculateAnimal, getDayFromDate, Zodiac, Animal, ZODIA
 import { calculateLifeGraph, LifeGraphPoint } from './data/lifeGraph';
 import { RadarChart } from './components/RadarChart';
 import { LifeGraphChart } from './components/LifeGraphChart';
+import { calculateDailyFortune, DailyFortune } from './data/dailyFortune';
+import { getSoftPowerRecommendation, SoftPowerProduct } from './data/softPower';
 
 type GameState = 'INTRO' | 'FORM' | 'PROCESSING' | 'RESULT';
 type Topic = 'love' | 'work' | 'power' | 'health';
@@ -29,6 +31,8 @@ interface FinalResult {
   zodiac: Zodiac;
   animal: Animal;
   lifeGraph: LifeGraphPoint[];
+  dailyFortune: DailyFortune;
+  softPower: SoftPowerProduct;
 }
 
 export default function App() {
@@ -104,6 +108,8 @@ export default function App() {
     const zodiac = calculateZodiac(date);
     const animal = calculateAnimal(date.getFullYear());
     const lifeGraph = calculateLifeGraph(day, date.getMonth() + 1, animal);
+    const dailyFortune = calculateDailyFortune(day);
+    const softPower = getSoftPowerRecommendation(zodiac);
 
     setFinalResult({
       archetype,
@@ -113,7 +119,9 @@ export default function App() {
       takhsa,
       zodiac,
       animal,
-      lifeGraph
+      lifeGraph,
+      dailyFortune,
+      softPower
     });
   };
 
@@ -436,6 +444,42 @@ export default function App() {
                 <div className="border-t-2 border-dashed border-amber-300 my-2"></div>
 
                 <div className="space-y-4">
+                  {/* Daily Fortune */}
+                  <div className="bg-amber-50 p-4 rounded-xl border border-amber-200">
+                    <p className="text-xs font-bold text-amber-600 uppercase mb-1">{t('result.dailyFortuneTitle')}</p>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style={{ backgroundColor: finalResult.dailyFortune.color }}>
+                        {finalResult.dailyFortune.luckScore}
+                      </div>
+                      <p className="text-sm text-amber-900 font-medium leading-tight">
+                        {t(`result.dailyPredictions.${finalResult.dailyFortune.prediction}`)}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Soft Power Boost */}
+                  <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-xl border border-indigo-100 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-2 opacity-10 text-4xl">🛍️</div>
+                    <p className="text-xs font-bold text-indigo-600 uppercase mb-3 flex items-center gap-1">
+                      <ShoppingBag size={14} /> {t('result.softPowerTitle')}
+                    </p>
+
+                    <div className="flex gap-4 items-start">
+                      <div className="text-3xl bg-white p-2 rounded-lg shadow-sm border border-slate-100">
+                        {finalResult.softPower.image}
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-slate-800 text-sm">{finalResult.softPower.name}</h5>
+                        <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wide">
+                          {finalResult.softPower.province} • {finalResult.softPower.region}
+                        </p>
+                        <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                          {finalResult.softPower.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
                     <p className="text-xs font-bold text-slate-400 uppercase mb-1">{t('result.prediction')}</p>
                     <p className="text-sm text-slate-800 font-medium leading-relaxed">

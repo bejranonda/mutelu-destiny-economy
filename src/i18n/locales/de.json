@@ -44,7 +44,15 @@
     "luckyDirPrefix": "*Glücksrichtung: ",
     "zodiacLabel": "Sternzeichen",
     "animalLabel": "Jahr des",
-    "lifeGraphTitle": "Lebensdiagramm"
+    "lifeGraphTitle": "Lebensdiagramm",
+    "dailyFortuneTitle": "Ihr Tageshoroskop",
+    "softPowerTitle": "Soft Power Verstärker",
+    "dailyPredictions": {
+      "friend": "Freundlicher Tag! Verhandlungen laufen glatt, Ältere sind wohlwollend.",
+      "enemy": "Konflikttag. Vorsicht mit Worten und Emotionen.",
+      "own": "Es ist Ihr Tag! Volle Energie, los geht's.",
+      "neutral": "Neutraler Tag. Bleiben Sie ruhig und machen Sie weiter."
+    }
   },
   "zodiac": {
     "aries": "Widder",
