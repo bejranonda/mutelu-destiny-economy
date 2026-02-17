@@ -41,7 +41,38 @@
     "planetLabel": "Hüter-Planet",
     "deityLabel": "Schutzgott",
     "takhsaTitle": "8 Richtungen Schicksal (Takhsa)",
-    "luckyDirPrefix": "*Glücksrichtung: "
+    "luckyDirPrefix": "*Glücksrichtung: ",
+    "zodiacLabel": "Sternzeichen",
+    "animalLabel": "Jahr des",
+    "lifeGraphTitle": "Lebensdiagramm"
+  },
+  "zodiac": {
+    "aries": "Widder",
+    "taurus": "Stier",
+    "gemini": "Zwillinge",
+    "cancer": "Krebs",
+    "leo": "Löwe",
+    "virgo": "Jungfrau",
+    "libra": "Waage",
+    "scorpio": "Skorpion",
+    "sagittarius": "Schütze",
+    "capricorn": "Steinbock",
+    "aquarius": "Wassermann",
+    "pisces": "Fische"
+  },
+  "animal": {
+    "rat": "Ratte",
+    "ox": "Ochse",
+    "tiger": "Tiger",
+    "rabbit": "Hase",
+    "dragon": "Drache",
+    "snake": "Schlange",
+    "horse": "Pferd",
+    "goat": "Ziege",
+    "monkey": "Affe",
+    "rooster": "Hahn",
+    "dog": "Hund",
+    "pig": "Schwein"
   },
   "processing": {
     "title": "Verarbeite Sterne und BIP-Index..."

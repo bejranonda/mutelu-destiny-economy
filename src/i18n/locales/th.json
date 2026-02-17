@@ -41,7 +41,38 @@
     "planetLabel": "ดาวประจำตัว",
     "deityLabel": "เทวดาคุ้มครอง",
     "takhsaTitle": "ดวงชะตา 8 ทิศ (ทักษา)",
-    "luckyDirPrefix": "*ทิศมงคล: "
+    "luckyDirPrefix": "*ทิศมงคล: ",
+    "zodiacLabel": "ราศี",
+    "animalLabel": "ปีนักษัตร",
+    "lifeGraphTitle": "กราฟชีวิต (Life Graph)"
+  },
+  "zodiac": {
+    "aries": "เมษ",
+    "taurus": "พฤษภ",
+    "gemini": "เมถุน",
+    "cancer": "กรกฎ",
+    "leo": "สิงห์",
+    "virgo": "กันย์",
+    "libra": "ตุลย์",
+    "scorpio": "พิจิก",
+    "sagittarius": "ธนู",
+    "capricorn": "มังกร",
+    "aquarius": "กุมภ์",
+    "pisces": "มีน"
+  },
+  "animal": {
+    "rat": "ชวด (หนู)",
+    "ox": "ฉลู (วัว)",
+    "tiger": "ขาล (เสือ)",
+    "rabbit": "เถาะ (กระต่าย)",
+    "dragon": "มะโรง (งูใหญ่)",
+    "snake": "มะเส็ง (งูเล็ก)",
+    "horse": "มะเมีย (ม้า)",
+    "goat": "มะแม (แพะ)",
+    "monkey": "วอก (ลิง)",
+    "rooster": "ระกา (ไก่)",
+    "dog": "จอ (สุนัข)",
+    "pig": "กุน (หมู)"
   },
   "processing": {
     "title": "ระบบกำลังประมวลผลดวงดาวและดัชนี GDP..."

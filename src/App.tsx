@@ -5,14 +5,18 @@ import { ARCHETYPES, DayData, Day } from './data/archetypes';
 import { QUESTS } from './data/quests';
 import { UNCLE_QUOTES, UNCLE_QUOTES_EN, UNCLE_QUOTES_DE } from './data/quotes';
 import { calculateTakhsa, TakhsaPosition } from './data/takhsa';
+import { calculateZodiac, calculateAnimal, getDayFromDate, Zodiac, Animal, ZODIACS, ANIMALS } from './data/zodiac';
+import { calculateLifeGraph, LifeGraphPoint } from './data/lifeGraph';
 import { RadarChart } from './components/RadarChart';
+import { LifeGraphChart } from './components/LifeGraphChart';
 
 type GameState = 'INTRO' | 'FORM' | 'PROCESSING' | 'RESULT';
 type Topic = 'love' | 'work' | 'power' | 'health';
 
 interface UserData {
   name: string;
-  day: Day;
+  birthDate: string; // YYYY-MM-DD
+  day: Day; // Derived
   topic: Topic;
 }
 
@@ -22,12 +26,20 @@ interface FinalResult {
   luckScore: number;
   user: UserData;
   takhsa: TakhsaPosition[];
+  zodiac: Zodiac;
+  animal: Animal;
+  lifeGraph: LifeGraphPoint[];
 }
 
 export default function App() {
   const { t, i18n } = useTranslation();
   const [gameState, setGameState] = useState<GameState>('INTRO');
-  const [userData, setUserData] = useState<UserData>({ name: '', day: 'sunday', topic: 'love' });
+  const [userData, setUserData] = useState<UserData>({
+    name: '',
+    birthDate: '',
+    day: 'sunday',
+    topic: 'love'
+  });
   const [finalResult, setFinalResult] = useState<FinalResult | null>(null);
   const [loadingText, setLoadingText] = useState("");
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
@@ -72,19 +84,43 @@ export default function App() {
   }, [gameState]);
 
   const generateDestiny = () => {
-    const archetype = ARCHETYPES[userData.day];
+    // Derive day from birthDate if not already set (safety)
+    const date = userData.birthDate ? new Date(userData.birthDate) : new Date();
+    const day = getDayFromDate(date);
+
+    // Safety check for invalid dates
+    if (isNaN(date.getTime())) {
+      // Fallback or handle error? For now fallback to current day
+    }
+
+    // Update userData with correct day before processing
+    // Actually we should have updated it on input change, but let's ensure it matches
+    const archetype = ARCHETYPES[day];
     const topicQuests = QUESTS[userData.topic] || QUESTS['love'];
     const quest = topicQuests[Math.floor(Math.random() * topicQuests.length)];
     const luckScore = Math.floor(Math.random() * 40) + 60;
-    const takhsa = calculateTakhsa(userData.day as Day);
 
-    setFinalResult({ archetype, quest, luckScore, user: userData, takhsa });
+    const takhsa = calculateTakhsa(day);
+    const zodiac = calculateZodiac(date);
+    const animal = calculateAnimal(date.getFullYear());
+    const lifeGraph = calculateLifeGraph(day, date.getMonth() + 1, animal);
+
+    setFinalResult({
+      archetype,
+      quest,
+      luckScore,
+      user: { ...userData, day }, // Ensure day is correct in result
+      takhsa,
+      zodiac,
+      animal,
+      lifeGraph
+    });
   };
 
   const resetGame = () => {
     setGameState('INTRO');
     setFinalResult(null);
-    setUserData({ name: '', day: 'sunday', topic: 'love' });
+    setUserData({ name: '', birthDate: '', day: 'sunday', topic: 'love' });
   };
 
   const changeLanguage = (lang: string) => {
@@ -97,8 +133,6 @@ export default function App() {
     { id: 'power', icon: Zap, labelKey: 'topics.power' },
     { id: 'health', icon: Activity, labelKey: 'topics.health' }
   ];
-
-  const days: Day[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
   // Dynamic background style based on result or default
   const getBackgroundStyle = () => {
@@ -243,15 +277,21 @@ export default function App() {
 
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-1">{t('form.dayLabel')}</label>
-                <select
-                  value={userData.day}
-                  onChange={(e) => setUserData({ ...userData, day: e.target.value as Day })}
-                  className="w-full bg-slate-900 border border-slate-600 rounded-lg p-3 text-slate-100 focus:ring-2 focus:ring-amber-500 outline-none appearance-none"
-                >
-                  {days.map(day => (
-                    <option key={day} value={day}>{t(`days.${day}`)}</option>
-                  ))}
-                </select>
+                <input
+                  required
+                  type="date"
+                  value={userData.birthDate}
+                  onChange={(e) => {
+                    const date = new Date(e.target.value);
+                    if (!isNaN(date.getTime())) {
+                      const day = getDayFromDate(date);
+                      setUserData({ ...userData, birthDate: e.target.value, day });
+                    } else {
+                      setUserData({ ...userData, birthDate: e.target.value });
+                    }
+                  }}
+                  className="w-full bg-slate-900 border border-slate-600 rounded-lg p-3 text-slate-100 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none transition-all appearance-none"
+                />
               </div>
 
               <div>
@@ -339,6 +379,24 @@ export default function App() {
                     <span className="text-slate-800">{finalResult.archetype.deity.name}</span>
                   </div>
                 </div>
+
+                {/* Zodiac & Animal Info */}
+                <div className="mt-2 grid grid-cols-2 gap-2 text-xs text-left">
+                  <div className="bg-white/60 p-2 rounded-lg border border-slate-100 flex items-center gap-2">
+                    <span className="text-2xl">{ZODIACS[finalResult.zodiac].icon}</span>
+                    <div>
+                      <span className="block font-bold text-slate-500">{t('result.zodiacLabel')}</span>
+                      <span className="text-slate-800">{t(`zodiac.${finalResult.zodiac}`)}</span>
+                    </div>
+                  </div>
+                  <div className="bg-white/60 p-2 rounded-lg border border-slate-100 flex items-center gap-2">
+                    <span className="text-2xl">{ANIMALS[finalResult.animal].icon}</span>
+                    <div>
+                      <span className="block font-bold text-slate-500">{t('result.animalLabel')}</span>
+                      <span className="text-slate-800">{t(`animal.${finalResult.animal}`)}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="p-6 pt-0 relative z-10">
@@ -359,6 +417,19 @@ export default function App() {
                   </div>
                   <div className="text-center text-[10px] text-slate-400 mt-2">
                     {t('result.luckyDirPrefix')}{finalResult.archetype.luckyDirection}
+                  </div>
+                </div>
+
+                <div className="border-t-2 border-dashed border-amber-300 my-2"></div>
+
+                {/* Life Graph Chart */}
+                <div className="mb-6">
+                  <h4 className="text-center text-sm font-bold text-slate-500 mb-2 uppercase tracking-wider">{t('result.lifeGraphTitle')}</h4>
+                  <div className="-mx-4">
+                    <LifeGraphChart
+                      data={finalResult.lifeGraph}
+                      color={finalResult.archetype.hColor}
+                    />
                   </div>
                 </div>
 
